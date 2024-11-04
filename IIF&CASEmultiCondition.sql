@@ -1,0 +1,32 @@
+---- IIF & CASE MultiConditions ------
+
+--Select
+--	ProductKey,
+--	EnglishProductName,
+--	Color,
+--	ListPrice,
+--	IIF(Color = 'Red' and ListPrice >= 3000,'RD-3k',
+--	IIF(Color = 'Red' and ListPrice >= 2000,'RD-2k',
+--	IIF(Color = 'Red','RD-<2k',
+--	IIF(Color = 'Silver' and ListPrice >= 3000,'SL-3k',
+--	IIF(Color = 'Silver' and ListPrice >= 2000,'SL-2k',
+--	IIF(Color = 'Silver' ,'SL-<2k','NA'
+--	))))))
+--From DimProduct
+
+--Select
+--	ProductKey,
+--	EnglishProductName,
+--	Color,
+--	ListPrice,
+--	CASE 
+--		When Color = 'Red' and ListPrice >= 3000 Then 'RD-3k'
+--		When Color = 'Red' and ListPrice >= 2000 Then 'RD-2k'
+--		When Color = 'Red'  Then 'RD-<2k'
+--		When Color = 'Silver' and ListPrice >= 3000 Then 'SL-3k'
+--		When Color = 'Silver' and ListPrice >= 2000 Then 'SL-2k'
+--		When Color = 'Silver'  Then 'SL-<2k'
+--		Else 'NA'
+--	END As Category
+--From DimProduct
+--where Color IN('Red','Silver')
