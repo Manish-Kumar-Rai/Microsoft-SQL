@@ -44,3 +44,27 @@ Syntax:
 --Select P.ProductKey, P.EnglishProductName,S.TotalSales From CteSales As S
 --Join CteProducts As P
 --On S.ProductKey = P.ProductKey
+
+
+------------ Recursion ----------------------
+
+--With CteNums(n)
+--As
+--(
+-- Select 1 As Nums
+-- Union All
+-- Select n + 1 From CteNums
+-- Where n < 10
+--)
+--Select * From CteNums
+
+With CteNums(n)
+As
+(
+ Select 1 As Nums
+ Union All
+ Select n + 1 From CteNums
+ --Where n < 10      ---- Condition to stop recursion
+)
+Select * From CteNums
+Option(MaxRecursion 2)              --- Query Hints
