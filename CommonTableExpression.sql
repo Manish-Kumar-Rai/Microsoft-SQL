@@ -20,10 +20,27 @@ Syntax:
 
 */
 
-WITH CteSelectData
-As
-(
-	Select ProductKey,Year(OrderDate) As OrderYear,SalesAmount From FactInternetSales
-)
-Select ProductKey,OrderYear,SUM(SalesAmount) As TotalSales From CteSelectData
-Group By ProductKey,OrderYear
+--WITH CteSelectData
+--As
+--(
+--	Select ProductKey,Year(OrderDate) As OrderYear,SalesAmount From FactInternetSales
+--)
+--Select ProductKey,OrderYear,SUM(SalesAmount) As TotalSales From CteSelectData
+--Group By ProductKey,OrderYear
+
+----- Multi Part CTE -------------------
+
+--WITH CteSales
+--As
+--(
+--	Select ProductKey,SUM(SalesAmount) As TotalSales From FactInternetSales
+--	Group By ProductKey
+--),
+--CteProducts
+--As
+--(
+--	Select ProductKey,EnglishProductName From DimProduct
+--)
+--Select P.ProductKey, P.EnglishProductName,S.TotalSales From CteSales As S
+--Join CteProducts As P
+--On S.ProductKey = P.ProductKey
