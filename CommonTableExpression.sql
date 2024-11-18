@@ -1,0 +1,29 @@
+----------------- Common Table Expression -------------------
+
+/*
+A Common Table Expression (CTE) in T-SQL is a temporary result set that is defined within the execution scope of
+a single SELECT, INSERT, UPDATE, DELETE, or MERGE statement. It's a useful feature for improving the readability
+and manageability of complex queries.
+
+Syntax:
+	WITH cte_name (column1, column2, ...)
+		AS
+		(
+		    -- CTE Query Definition
+		    SELECT ...
+		    FROM ...
+		    WHERE ...
+		)
+	-- Query using the CTE
+	SELECT ...
+	FROM cte_name
+
+*/
+
+WITH CteSelectData
+As
+(
+	Select ProductKey,Year(OrderDate) As OrderYear,SalesAmount From FactInternetSales
+)
+Select ProductKey,OrderYear,SUM(SalesAmount) As TotalSales From CteSelectData
+Group By ProductKey,OrderYear
