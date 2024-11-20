@@ -64,7 +64,7 @@ As
  Select 1 As Nums
  Union All
  Select n + 1 From CteNums
- --Where n < 10      ---- Condition to stop recursion
+ --Where n < 10      ---- Condition to stop recurs
 )
 Select * From CteNums
 Option(MaxRecursion 2)              --- Query Hints
